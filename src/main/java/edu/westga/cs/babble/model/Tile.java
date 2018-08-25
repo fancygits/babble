@@ -60,8 +60,11 @@ public class Tile {
 		else if (eightPointLetters.contains(ltr)) {
 			return 8;
 		}
-		else {
+		else if (tenPointLetters.contains(ltr)) {
 			return 10;
+		} else {
+			return 0;
 		}
+		
 	}
 }

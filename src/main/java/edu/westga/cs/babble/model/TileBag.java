@@ -15,8 +15,7 @@ public class TileBag {
 	/**
 	 * Creates a new, populated TileBag
 	 */
-	public TileBag()
-	{
+	public TileBag() {
 		this.rand = new Random();
 		this.tiles = new ArrayList<Tile>();
 		this.populateWithScrabbleTiles();
@@ -25,8 +24,7 @@ public class TileBag {
 	/**
 	 * Brute-force fills the bag with a set of tiles with the Scrabble points and letter distribution (ignoring the blank tiles)
 	 */
-	private void populateWithScrabbleTiles()
-	{
+	private void populateWithScrabbleTiles() {
 		// 1-pt tiles: E, A, I, O, N, R, T, L, S, U
 		for(int i=0; i<12; i++) tiles.add(new Tile('E'));
 		for(int i=0; i< 9; i++) tiles.add(new Tile('A'));
@@ -72,8 +70,7 @@ public class TileBag {
 	 * Answers the existential question of "is this bag empty?"
 	 * @return true if empty, false otherwise
 	 */
-	public boolean isEmpty()
-	{
+	public boolean isEmpty() {
 		return this.tiles.isEmpty();
 	}
 	
@@ -82,10 +79,8 @@ public class TileBag {
 	 * @return the removed tile
 	 * @throws EmptyTileBagException if the bag is empty
 	 */
-	public Tile drawTile() throws EmptyTileBagException
-	{
-		if(isEmpty())
-		{
+	public Tile drawTile() throws EmptyTileBagException {
+		if(isEmpty()) {
 			throw new EmptyTileBagException();
 		}
 		
