@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
    <children>
       <Label text="Tiles" />
       <ListView orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
@@ -34,7 +34,7 @@
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                </HBox.margin>
             </Label>
-            <TextField accessibleHelp="Your Current Score" editable="false">
+            <TextField id="scoreField" fx:id="scoreField" accessibleHelp="Your Current Score" editable="false">
                <tooltip>
                   <Tooltip text="Your current score" />
                </tooltip></TextField>
