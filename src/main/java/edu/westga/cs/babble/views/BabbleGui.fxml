@@ -17,13 +17,13 @@
             <Tooltip text="This area contains the tiles available to be used to make a word." />
          </tooltip></ListView>
       <Label text="Your Word" />
-      <ListView fx:id="playedWordField" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
+      <ListView fx:id="playedWordField" onMouseClicked="#playedWordClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
          <tooltip>
             <Tooltip text="This area contains the tiles you have selected to make a word." />
          </tooltip></ListView>
       <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="300.0" spacing="10.0">
          <children>
-            <Button accessibleText="Reset" mnemonicParsing="false" text="Reset" />
+            <Button accessibleText="Reset" mnemonicParsing="false" onAction="#reset" text="Reset" />
             <Button mnemonicParsing="false" text="Play Word" />
          </children>
       </HBox>

@@ -15,9 +15,7 @@ public class TileCell extends ListCell<Tile> {
 		super.updateItem(item, empty);
 		
 		String name = "";
-		if (item == null || empty) 	{
-			
-		} else {
+		if (item != null || !empty) 	{
 			name = Character.toString(item.getLetter());
 		}
 		this.setText(name);

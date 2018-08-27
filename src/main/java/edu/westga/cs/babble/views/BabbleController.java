@@ -5,6 +5,7 @@ import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
 import edu.westga.cs.babble.model.TileBag;
 import edu.westga.cs.babble.model.TileCellFactory;
+import edu.westga.cs.babble.model.TileGroup;
 import edu.westga.cs.babble.model.TileNotInGroupException;
 import edu.westga.cs.babble.model.TileRack;
 import javafx.beans.property.IntegerProperty;
@@ -61,6 +62,49 @@ public class BabbleController {
 		this.tileRackField.setCellFactory(new TileCellFactory());
 		this.playedWordField.setCellFactory(new TileCellFactory());
 		this.fillRack();
+		this.playedWordField.setItems(this.playedWord.tiles());
+		this.tileRackField.setItems(this.tileRack.tiles());
+	}
+	
+	/**
+	 * Moves a tile from the top rack to the played word area
+	 */
+	@FXML
+	private void tileRackClicked() {
+		Tile tile = this.tileRackField.getSelectionModel().getSelectedItem();
+		this.tileRackField.getSelectionModel().clearSelection();
+		if (tile != null) {
+			this.moveTile(this.tileRack, this.playedWord, tile);
+		}
+	}
+	
+	/**
+	 * Moves a tile from the played word area to the top TileRack
+	 */
+	@FXML
+	private void playedWordClicked() {
+		Tile tile = this.playedWordField.getSelectionModel().getSelectedItem();
+		this.playedWordField.getSelectionModel().clearSelection();
+		if (tile != null) {
+			this.moveTile(this.playedWord, this.tileRack, tile);
+		}
+	}
+	
+	@FXML
+	private void reset() {
+		while (this.playedWord.tiles().size() > 0) {
+			Tile tile = this.playedWord.tiles().get(0);
+			this.moveTile(this.playedWord, this.tileRack, tile);
+		}
+	}
+	
+	private void moveTile(TileGroup fromRack, TileGroup toRack, Tile tile) {
+		try {
+			fromRack.remove(tile);
+			toRack.append(tile);
+		} catch (TileNotInGroupException tnige) {
+			this.babbleAlert("Doesn't exist", "Tile Not in Rack", "Somehow you clicked a tile that doesn't exist.");
+		}
 	}
 	
 	/**
@@ -76,35 +120,6 @@ public class BabbleController {
 				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from.");
 			}
 		}
-		this.updateFields();
-	}
-	
-	
-	
-	/**
-	 * Moves a tile from the top rack to the played word area
-	 */
-	@FXML
-	private void tileRackClicked() {
-		Tile tile = this.tileRackField.getSelectionModel().getSelectedItem();
-		this.tileRackField.getSelectionModel().clearSelection();
-		if (tile != null) {
-			try {
-				this.playedWord.append(tile);
-				this.tileRack.remove(tile);
-			} catch (TileNotInGroupException tnige) {
-				this.babbleAlert("Doesn't exist", "Tile Not in Rack", "Somehow you clicked a tile that doesn't exist.");
-			}
-		}
-		this.updateFields();
-	}
-	
-	/**
-	 * Updates tileRackField and playedWordField to the current set of tiles in each
-	 */
-	private void updateFields() {
-		this.playedWordField.setItems(this.playedWord.tiles());
-		this.tileRackField.setItems(this.tileRack.tiles());
 	}
 	
 	/**
