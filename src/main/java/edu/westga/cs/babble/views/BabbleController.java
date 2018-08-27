@@ -5,6 +5,7 @@ import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
 import edu.westga.cs.babble.model.TileBag;
 import edu.westga.cs.babble.model.TileCellFactory;
+import edu.westga.cs.babble.model.TileNotInGroupException;
 import edu.westga.cs.babble.model.TileRack;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -20,20 +21,25 @@ import javafx.scene.control.TextField;
  * @version 2018.08.25
  *
  */
+/**
+ * @author James Luke Johnson
+ * @version 2018.08.27
+ *
+ */
 public class BabbleController {
 	@FXML
     private TextField scoreField;
 	@FXML
-	private ListView<Tile> tileRack;
+	private ListView<Tile> tileRackField;
 	@FXML
-	private ListView<Tile> playedWord;
+	private ListView<Tile> playedWordField;
 	
 	private IntegerProperty score;
 
 	
 	private TileBag tileBag;
-	private TileRack tiles;
-	private PlayedWord played;
+	private TileRack tileRack;
+	private PlayedWord playedWord;
 	
 	
 	/**
@@ -41,9 +47,9 @@ public class BabbleController {
 	 */
 	public BabbleController() {
 		this.score = new SimpleIntegerProperty();
-		this.tiles = new TileRack();
-		this.played = new PlayedWord();
 		this.tileBag = new TileBag();
+		this.tileRack = new TileRack();
+		this.playedWord = new PlayedWord();
 	}
 	
 	/**
@@ -52,37 +58,53 @@ public class BabbleController {
 	@FXML
 	private void initialize() {
 		this.scoreField.textProperty().bind(this.score.asString());
-		this.tileRack.setCellFactory(new TileCellFactory());
-		this.playedWord.setCellFactory(new TileCellFactory());
+		this.tileRackField.setCellFactory(new TileCellFactory());
+		this.playedWordField.setCellFactory(new TileCellFactory());
 		this.fillRack();
-		this.tileRack.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> tileInRackClicked(oldValue));
 	}
 	
 	/**
 	 * Fills the TileRack from Tiles from the TileBag
 	 */
 	private void fillRack() {
-		int tilesNeeded = this.tiles.getNumberOfTilesNeeded();
+		int tilesNeeded = this.tileRack.getNumberOfTilesNeeded();
 		for (int i = 0; i < tilesNeeded; i++) {
 			try {
 				Tile tile = this.tileBag.drawTile();
-				this.tiles.append(tile);
+				this.tileRack.append(tile);
 			} catch(EmptyTileBagException etbe) {
 				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from.");
 			}
 		}
-		this.tileRack.setItems(this.tiles.tiles());
-		//System.out.println(tiles.getHand());
+		this.updateFields();
 	}
 	
-	private void tileInRackClicked(Tile tile) {
-		try {
-			this.tiles.remove(tile);
-			this.played.append(tile);
-		} catch (Exception e) {
-			this.babbleAlert("Doesn't exist", "Tile Not in Rack", "Somehow you clicked a tile that doesn't exist.");
+	
+	
+	/**
+	 * Moves a tile from the top rack to the played word area
+	 */
+	@FXML
+	private void tileRackClicked() {
+		Tile tile = this.tileRackField.getSelectionModel().getSelectedItem();
+		this.tileRackField.getSelectionModel().clearSelection();
+		if (tile != null) {
+			try {
+				this.playedWord.append(tile);
+				this.tileRack.remove(tile);
+			} catch (TileNotInGroupException tnige) {
+				this.babbleAlert("Doesn't exist", "Tile Not in Rack", "Somehow you clicked a tile that doesn't exist.");
+			}
 		}
-		
+		this.updateFields();
+	}
+	
+	/**
+	 * Updates tileRackField and playedWordField to the current set of tiles in each
+	 */
+	private void updateFields() {
+		this.playedWordField.setItems(this.playedWord.tiles());
+		this.tileRackField.setItems(this.tileRack.tiles());
 	}
 	
 	/**

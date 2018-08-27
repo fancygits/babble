@@ -9,16 +9,17 @@ import javafx.scene.control.ListCell;
  *
  */
 public class TileCell extends ListCell<Tile> {
+	
 	@Override
 	public void updateItem(Tile item, boolean empty) {
 		super.updateItem(item, empty);
 		
 		String name = "";
 		if (item == null || empty) 	{
+			
 		} else {
 			name = Character.toString(item.getLetter());
 		}
-		
 		this.setText(name);
 	}
 }

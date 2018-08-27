@@ -12,12 +12,12 @@
 <VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.views.BabbleController">
    <children>
       <Label text="Tiles" />
-      <ListView fx:id="tileRack" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
+      <ListView fx:id="tileRackField" onMouseClicked="#tileRackClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
          <tooltip>
             <Tooltip text="This area contains the tiles available to be used to make a word." />
          </tooltip></ListView>
       <Label text="Your Word" />
-      <ListView fx:id="playedWord" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
+      <ListView fx:id="playedWordField" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
          <tooltip>
             <Tooltip text="This area contains the tiles you have selected to make a word." />
          </tooltip></ListView>
