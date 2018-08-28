@@ -19,13 +19,9 @@ import javafx.scene.control.TextField;
 
 /**
  * Defines the controller for the Babble GUI
+ * 
  * @author James Luke Johnson
  * @version 2018.08.25
- *
- */
-/**
- * @author James Luke Johnson
- * @version 2018.08.27
  *
  */
 public class BabbleController {
@@ -141,12 +137,13 @@ public class BabbleController {
 	 */
 	private void fillRack() {
 		int tilesNeeded = this.tileRack.getNumberOfTilesNeeded();
-		for (int i = 0; i < tilesNeeded; i++) {
+		for (int count = 0; count < tilesNeeded; count++) {
 			try {
 				Tile tile = this.tileBag.drawTile();
 				this.tileRack.append(tile);
-			} catch(EmptyTileBagException etbe) {
-				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from. Game over.");
+			} catch (EmptyTileBagException etbe) {
+				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from.");
+				break;
 			}
 		}
 	}

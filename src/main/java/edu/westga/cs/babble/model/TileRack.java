@@ -3,8 +3,8 @@ package edu.westga.cs.babble.model;
 
 /**
  * A small collection of Tiles that holds the currently-drawn set of tiles.
- * @author lewisb
- *
+ * @author  lewisb
+ * @version 2018.8.28
  */
 public class TileRack extends TileGroup {
 

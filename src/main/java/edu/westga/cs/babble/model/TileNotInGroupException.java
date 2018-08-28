@@ -3,8 +3,8 @@ package edu.westga.cs.babble.model;
 /**
  * Thrown when the program attempts to remove a Tile not in the TileGroup
  * 
- * @author lewisb
- *
+ * @author  lewisb
+ * @version 2018.8.28
  */
 public class TileNotInGroupException extends Exception {
 

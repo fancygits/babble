@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class Babble extends Application {
 
 	private static final String GUI_RESOURCE = "edu/westga/cs/babble/views/BabbleGui.fxml";
+	
     @Override
     public void start(Stage primaryStage) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

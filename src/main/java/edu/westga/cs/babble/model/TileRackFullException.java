@@ -3,7 +3,8 @@ package edu.westga.cs.babble.model;
 /**
  * Thrown by {@link TileRack#append(Tile)} if an attempt is made to append to an already-full rack.
  * 
- * @author lewisb
+ * @author  lewisb
+ * @version 2018.8.28
  *
  */
 public class TileRackFullException extends RuntimeException {
