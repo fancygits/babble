@@ -1,5 +1,6 @@
 package edu.westga.cs.babble.views;
 
+import edu.westga.cs.babble.controllers.WordDictionary;
 import edu.westga.cs.babble.model.EmptyTileBagException;
 import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
@@ -35,22 +36,22 @@ public class BabbleController {
 	@FXML
 	private ListView<Tile> playedWordField;
 	
-	private IntegerProperty score;
-
+	private IntegerProperty scoreProperty;
 	
 	private TileBag tileBag;
 	private TileRack tileRack;
 	private PlayedWord playedWord;
-	
+	private WordDictionary dictionary;
 	
 	/**
 	 * Constructs a new BabbleController object
 	 */
 	public BabbleController() {
-		this.score = new SimpleIntegerProperty();
+		this.dictionary = new WordDictionary();
 		this.tileBag = new TileBag();
 		this.tileRack = new TileRack();
 		this.playedWord = new PlayedWord();
+		this.scoreProperty = new SimpleIntegerProperty(0);
 	}
 	
 	/**
@@ -58,7 +59,7 @@ public class BabbleController {
 	 */
 	@FXML
 	private void initialize() {
-		this.scoreField.textProperty().bind(this.score.asString());
+		this.scoreField.textProperty().bind(this.scoreProperty.asString());
 		this.tileRackField.setCellFactory(new TileCellFactory());
 		this.playedWordField.setCellFactory(new TileCellFactory());
 		this.fillRack();
@@ -90,6 +91,9 @@ public class BabbleController {
 		}
 	}
 	
+	/**
+	 * Resets the board. Moving all Tiles from PlayedWord back to TileRack
+	 */
 	@FXML
 	private void reset() {
 		while (this.playedWord.tiles().size() > 0) {
@@ -98,6 +102,31 @@ public class BabbleController {
 		}
 	}
 	
+	/**
+	 * Plays a word. Checks the PlayedWord for a word. Checks if it is a word. Adds points. Draws more tiles.
+	 */
+	@FXML
+	private void playWord() {
+		String submittedWord = this.playedWord.getHand();
+		if (this.dictionary.isValidWord(submittedWord)) {
+			int wordScore = this.playedWord.getScore();
+			this.playedWord.clear();
+			this.scoreProperty.set(this.scoreProperty.get() + wordScore);
+			this.fillRack();
+		} else {
+			this.babbleAlert("Not a word", "Not a Valid Word", "The played word isn't a valid word.\n" 
+					+ "Please correct it and try again.");
+		}
+	}
+	
+	
+	/**
+	 * Moves a Tile from a TileGroup to another TileGroup
+	 * 
+	 * @param fromRack	The TileGroup the Tile should move FROM
+	 * @param toRack	The TileGroup the Tile should move TO
+	 * @param tile		The Tile to be moved
+	 */
 	private void moveTile(TileGroup fromRack, TileGroup toRack, Tile tile) {
 		try {
 			fromRack.remove(tile);
@@ -117,7 +146,7 @@ public class BabbleController {
 				Tile tile = this.tileBag.drawTile();
 				this.tileRack.append(tile);
 			} catch(EmptyTileBagException etbe) {
-				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from.");
+				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from. Game over.");
 			}
 		}
 	}

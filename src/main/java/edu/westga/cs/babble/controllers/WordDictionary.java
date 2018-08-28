@@ -2,11 +2,10 @@
 
 package edu.westga.cs.babble.controllers;
 
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import pt.tumba.spell.*;
+import pt.tumba.spell.SpellChecker;
 
 /**
  * Spell checker for words we attempt to make with Babble

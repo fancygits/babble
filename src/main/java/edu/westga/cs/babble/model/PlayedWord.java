@@ -1,7 +1,5 @@
 package edu.westga.cs.babble.model;
 
-import java.util.ArrayList;
-
 /**
  * A candidate word made up of tiles and their points
  * @author lewisb
