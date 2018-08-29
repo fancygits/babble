@@ -9,22 +9,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.views.BabbleController">
+<VBox prefHeight="200.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.babble.controllers.BabbleController">
    <children>
       <Label text="Tiles" />
-      <ListView fx:id="tileRackField" onMouseClicked="#tileRackClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
+      <ListView fx:id="tileRackField" accessibleText="Available tiles area" onMouseClicked="#tileRackClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
          <tooltip>
             <Tooltip text="This area contains the tiles available to be used to make a word." />
          </tooltip></ListView>
       <Label text="Your Word" />
-      <ListView fx:id="playedWordField" onMouseClicked="#playedWordClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
+      <ListView fx:id="playedWordField" accessibleText="Your word area" onMouseClicked="#playedWordClicked" onTouchPressed="#playedWordClicked" orientation="HORIZONTAL" prefHeight="35.0" prefWidth="280.0">
          <tooltip>
             <Tooltip text="This area contains the tiles you have selected to make a word." />
          </tooltip></ListView>
       <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="300.0" spacing="10.0">
          <children>
-            <Button accessibleText="Reset" mnemonicParsing="false" onAction="#reset" text="Reset" />
-            <Button mnemonicParsing="false" onAction="#playWord" text="Play Word" />
+            <Button accessibleText="Reset" mnemonicParsing="false" onAction="#reset" onTouchPressed="#reset" text="Reset" />
+            <Button accessibleText="Play Word" mnemonicParsing="false" onAction="#playWord" onTouchPressed="#playWord" text="Play Word" />
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="300.0">
@@ -34,7 +34,7 @@
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="scoreField" accessibleHelp="Your Current Score" editable="false">
+            <TextField fx:id="scoreField" accessibleText="Your Current Score" editable="false">
                <tooltip>
                   <Tooltip text="Your current score" />
                </tooltip></TextField>

@@ -18,6 +18,7 @@ public class TileCell extends ListCell<Tile> {
 		if (item != null || !empty) 	{
 			name = Character.toString(item.getLetter());
 		}
+		this.setAccessibleText(name);
 		this.setText(name);
 	}
 }

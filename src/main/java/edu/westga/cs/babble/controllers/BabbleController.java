@@ -1,6 +1,5 @@
-package edu.westga.cs.babble.views;
+package edu.westga.cs.babble.controllers;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
 import edu.westga.cs.babble.model.EmptyTileBagException;
 import edu.westga.cs.babble.model.PlayedWord;
 import edu.westga.cs.babble.model.Tile;
@@ -57,7 +56,9 @@ public class BabbleController {
 	private void initialize() {
 		this.scoreField.textProperty().bind(this.scoreProperty.asString());
 		this.tileRackField.setCellFactory(new TileCellFactory());
+		//this.tileRackField.setOnMouseClicked(e -> this.tileRackClicked());
 		this.playedWordField.setCellFactory(new TileCellFactory());
+		//this.playedWordField.setOnMouseClicked(e -> this.playedWordClicked());
 		this.fillRack();
 		this.playedWordField.setItems(this.playedWord.tiles());
 		this.tileRackField.setItems(this.tileRack.tiles());
