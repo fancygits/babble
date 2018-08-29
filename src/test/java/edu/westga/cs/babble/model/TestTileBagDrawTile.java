@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,13 +15,18 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TestTileBagDrawTile {
+	private TileBag bag;
+	
+	@BeforeEach
+	public void setUp() {
+		bag = new TileBag();
+	}
 
 	/**
 	 * Test method for {@link edu.westga.cs.babble.model.TileBag#drawTile()}.
 	 */
 	@Test
 	void canDrawAllTiles() {
-		TileBag bag = new TileBag();
 		for (int count = 0; count < 98; count++) {
 			try {
 				bag.drawTile();
@@ -33,7 +39,6 @@ class TestTileBagDrawTile {
 
 	@Test
 	void canNotDrawTooManyTiles() {
-		TileBag bag = new TileBag();
 		for (int count = 0; count < 98; count++) {
 			try {
 				bag.drawTile();
@@ -54,7 +59,6 @@ class TestTileBagDrawTile {
 			standardDistribution.add(c);
 		}
 		
-		TileBag bag = new TileBag();
 		for (int i = 0; i < 98; i++) {
 			try {
 				// Draw a tile and remove that letter from the standardDistribution
