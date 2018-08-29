@@ -35,6 +35,11 @@ class TestTileGroupRemove {
 	 * Test method for {@link edu.westga.cs.babble.model.TileGroup#remove(edu.westga.cs.babble.model.Tile)}.
 	 */
 	@Test
+	void shouldNotAllowNull() {
+		assertThrows(IllegalArgumentException.class, () -> dummy.remove(null));
+	}
+	
+	@Test
 	void canNotRemoveFromEmptyTileGroup() {
 		assertTrue(dummy.tiles().isEmpty());
 		assertThrows(TileNotInGroupException.class, () -> dummy.remove(tile0));
