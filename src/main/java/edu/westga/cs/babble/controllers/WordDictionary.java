@@ -1,16 +1,14 @@
-
-
 package edu.westga.cs.babble.controllers;
 
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import pt.tumba.spell.*;
+import pt.tumba.spell.SpellChecker;
 
 /**
  * Spell checker for words we attempt to make with Babble
- * @author lewisb
+ * @author 	lewisb
+ * @version	2018.8.28
  *
  */
 public class WordDictionary {
@@ -23,13 +21,13 @@ public class WordDictionary {
 	public WordDictionary() {
 		this.checker = new SpellChecker();
 
-			try {
-				Reader reader = new InputStreamReader(WordDictionary.class.getResourceAsStream("/english.txt"));
-				this.checker.initialize(reader);
-			} catch (Exception e) {
-				System.err.println("Wrong path to dictionary file");
-				e.printStackTrace();
-			}
+		try {
+			Reader reader = new InputStreamReader(WordDictionary.class.getResourceAsStream("/english.txt"));
+			this.checker.initialize(reader);
+		} catch (Exception ex) {
+			System.err.println("Wrong path to dictionary file");
+			ex.printStackTrace();
+		}
 	}
 	
 	/**

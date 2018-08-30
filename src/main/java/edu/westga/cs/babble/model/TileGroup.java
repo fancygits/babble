@@ -1,10 +1,15 @@
 package edu.westga.cs.babble.model;
 
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Defines a TileGroup superclass for TileRack and PlayedWord
+ * @author lewisb
+ * @author James Luke Johnson
+ * @version 2018.08.28
+ *
+ */
 public abstract class TileGroup {
 
 	private ObservableList<Tile> tiles;
@@ -29,7 +34,7 @@ public abstract class TileGroup {
 	 * @param tile the Tile to append
 	 */
 	public void append(Tile tile) {
-		if(tile==null) {
+		if (tile == null) {
 			throw new IllegalArgumentException("tile cannot be null");
 		}
 		
@@ -59,12 +64,13 @@ public abstract class TileGroup {
 	
 	/**
 	 * Stringifies the contents of the rack as the tile characters, in order of containment.
+	 * @return	String of tile characters
 	 */
 	public String getHand() {
-		String s = "";
-		for(Tile t: this.tiles) {
-			s += t.getLetter();
+		String str = "";
+		for (Tile tile: this.tiles) {
+			str += tile.getLetter();
 		}
-		return s;
+		return str;
 	}
 }
