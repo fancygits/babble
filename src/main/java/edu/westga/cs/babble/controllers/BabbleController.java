@@ -141,6 +141,10 @@ public class BabbleController {
 				Tile tile = this.tileBag.drawTile();
 				this.tileRack.append(tile);
 			} catch (EmptyTileBagException etbe) {
+				if (this.tileRack.tiles().isEmpty()) {
+					this.babbleAlert("Winner!", "You win!", "You've played every tile successfully! Well done!");
+					return;
+				}
 				this.babbleAlert("TileBag Empty", "The TileBag is empty", "There are no more tiles to draw from.");
 				break;
 			}
