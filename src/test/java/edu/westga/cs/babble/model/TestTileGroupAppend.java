@@ -16,7 +16,7 @@ class TestTileGroupAppend {
 
 	@BeforeEach
 	public void setUp() {
-		dummy = new TileGroupDummy();
+		this.dummy = new TileGroupDummy();
 	}
 	
 	/**
@@ -24,61 +24,61 @@ class TestTileGroupAppend {
 	 */
 	@Test
 	void shouldNotAllowNull() {
-		assertThrows(IllegalArgumentException.class, () -> dummy.append(null));
+		assertThrows(IllegalArgumentException.class, () -> this.dummy.append(null));
 	}
 
 	@Test
 	void emptyGroupShouldBeEmpty() {
-		assertEquals(0, dummy.tiles().size());
-		assertEquals("", dummy.getHand());
+		assertEquals(0, this.dummy.tiles().size());
+		assertEquals("", this.dummy.getHand());
 	}
 
 	@Test
 	void shouldHaveOneTileInTileGroup() {
-		dummy.append(new Tile('A'));
-		assertEquals(1, dummy.tiles().size());
-		assertEquals('A', dummy.tiles().get(0).getLetter());
-		assertEquals("A", dummy.getHand());
+		this.dummy.append(new Tile('A'));
+		assertEquals(1, this.dummy.tiles().size());
+		assertEquals('A', this.dummy.tiles().get(0).getLetter());
+		assertEquals("A", this.dummy.getHand());
 	}
 	
 	@Test
 	void shouldHaveManyTilesInTileGroup() {
-		dummy.append(new Tile('A'));
-		dummy.append(new Tile('B'));
-		dummy.append(new Tile('C'));
-		dummy.append(new Tile('D'));
-		assertEquals(4, dummy.tiles().size());
-		assertEquals('A', dummy.tiles().get(0).getLetter());
-		assertEquals('B', dummy.tiles().get(1).getLetter());
-		assertEquals('C', dummy.tiles().get(2).getLetter());
-		assertEquals('D', dummy.tiles().get(3).getLetter());
-		assertEquals("ABCD", dummy.getHand());
+		this.dummy.append(new Tile('A'));
+		this.dummy.append(new Tile('B'));
+		this.dummy.append(new Tile('C'));
+		this.dummy.append(new Tile('D'));
+		assertEquals(4, this.dummy.tiles().size());
+		assertEquals('A', this.dummy.tiles().get(0).getLetter());
+		assertEquals('B', this.dummy.tiles().get(1).getLetter());
+		assertEquals('C', this.dummy.tiles().get(2).getLetter());
+		assertEquals('D', this.dummy.tiles().get(3).getLetter());
+		assertEquals("ABCD", this.dummy.getHand());
 	}
 
 	@Test
 	void shouldHaveManyTilesIncludingDuplicatesInTileGroup() {
-		dummy.append(new Tile('A'));
-		dummy.append(new Tile('B'));
-		dummy.append(new Tile('C'));
-		dummy.append(new Tile('D'));
-		dummy.append(new Tile('A'));
-		dummy.append(new Tile('A'));
-		assertEquals(6, dummy.tiles().size());
-		assertEquals('A', dummy.tiles().get(0).getLetter());
-		assertEquals('B', dummy.tiles().get(1).getLetter());
-		assertEquals('C', dummy.tiles().get(2).getLetter());
-		assertEquals('D', dummy.tiles().get(3).getLetter());
-		assertEquals('A', dummy.tiles().get(4).getLetter());
-		assertEquals('A', dummy.tiles().get(5).getLetter());
-		assertEquals("ABCDAA", dummy.getHand());
+		this.dummy.append(new Tile('A'));
+		this.dummy.append(new Tile('B'));
+		this.dummy.append(new Tile('C'));
+		this.dummy.append(new Tile('D'));
+		this.dummy.append(new Tile('A'));
+		this.dummy.append(new Tile('A'));
+		assertEquals(6, this.dummy.tiles().size());
+		assertEquals('A', this.dummy.tiles().get(0).getLetter());
+		assertEquals('B', this.dummy.tiles().get(1).getLetter());
+		assertEquals('C', this.dummy.tiles().get(2).getLetter());
+		assertEquals('D', this.dummy.tiles().get(3).getLetter());
+		assertEquals('A', this.dummy.tiles().get(4).getLetter());
+		assertEquals('A', this.dummy.tiles().get(5).getLetter());
+		assertEquals("ABCDAA", this.dummy.getHand());
 	}
 
 	@Test
 	void canNotAddSameTileTwice() {
 		Tile tile = new Tile('A');
-		dummy.append(tile);
-		assertThrows(IllegalArgumentException.class, () -> dummy.append(tile));
-		assertEquals("A", dummy.getHand());
+		this.dummy.append(tile);
+		assertThrows(IllegalArgumentException.class, () -> this.dummy.append(tile));
+		assertEquals("A", this.dummy.getHand());
 	}
 
 }

@@ -36,8 +36,10 @@ public class TileBag {
 		this.populate10ptTiles();
 	}
 	
+	/**
+	 * 1-pt tiles: E, A, I, O, N, R, T, L, S, U
+	 */
 	private void populate1ptTiles() {
-		// 1-pt tiles: E, A, I, O, N, R, T, L, S, U
 		for (int count = 0; count < 12; count++) {
 			this.tiles.add(new Tile('E'));
 		}
@@ -60,8 +62,10 @@ public class TileBag {
 		}
 	}
 	
+	/**
+	 * 2-pt tiles: D, G
+	 */
 	private void populate2ptTiles() {
-		// 2-pt tiles: D, G
 		for (int count = 0; count < 4; count++) {
 			this.tiles.add(new Tile('D'));
 		}
@@ -70,8 +74,10 @@ public class TileBag {
 		}
 	}
 	
+	/**
+	 * 3 pt tiles: B, C, M, P
+	 */
 	private void populate3ptTiles() {
-		// 3 pt tiles: B, C, M, P
 		for (int count = 0; count < 2; count++) {
 			this.tiles.add(new Tile('B'));
 			this.tiles.add(new Tile('C'));
@@ -80,8 +86,10 @@ public class TileBag {
 		}
 	}
 	
+	/**
+	 * 4 pt tiles: F, H, V, W, Y
+	 */
 	private void populate4ptTiles() {
-		// 4 pt tiles: F, H, V, W, Y
 		for (int count = 0; count < 2; count++) {
 			this.tiles.add(new Tile('F'));
 			this.tiles.add(new Tile('H'));
@@ -91,19 +99,25 @@ public class TileBag {
 		}
 	}
 	
+	/**
+	 * 5-pt tiles: K
+	 */
 	private void populate5ptTiles() {
-		// 5-pt tiles: K
 		this.tiles.add(new Tile('K'));
 	}
 		
+	/**
+	 * 8-pt tiles: J, X
+	 */
 	private void populate8ptTiles() {
-		// 8-pt tiles: J, X
 		this.tiles.add(new Tile('J'));
 		this.tiles.add(new Tile('X'));
 	}
 	
+	/**
+	 * 10-pt tiles: Q, Z
+	 */
 	private void populate10ptTiles() {
-		// 10-pt tiles: Q, Z
 		this.tiles.add(new Tile('Q'));
 		this.tiles.add(new Tile('Z'));
 	}

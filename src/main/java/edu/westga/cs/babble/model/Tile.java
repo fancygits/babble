@@ -42,6 +42,7 @@ public class Tile {
 		String fourPointLetters = "FHVWY";
 		String fivePointLetters = "K";
 		String eightPointLetters = "JX";
+		@SuppressWarnings("unused")
 		String tenPointLetters = "QZ";
 		
 		if (onePointLetters.contains(ltr)) {
@@ -56,11 +57,8 @@ public class Tile {
 			return 5;
 		} else if (eightPointLetters.contains(ltr)) {
 			return 8;
-		} else if (tenPointLetters.contains(ltr)) {
-			return 10;
 		} else {
-			return 0;
+			return 10;
 		}
-		
 	}
 }

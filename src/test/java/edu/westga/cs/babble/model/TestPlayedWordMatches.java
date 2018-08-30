@@ -17,7 +17,7 @@ class TestPlayedWordMatches {
 	
 	@BeforeEach
 	void setUp() {
-		playedWord = new PlayedWord();
+		this.playedWord = new PlayedWord();
 	}
 
 	/**
@@ -25,75 +25,75 @@ class TestPlayedWordMatches {
 	 */
 	@Test
 	void hasTilesForAMultipleLetterWord() {
-		playedWord.append(new Tile('C'));
-		playedWord.append(new Tile('O'));
-		playedWord.append(new Tile('M'));
-		playedWord.append(new Tile('P'));
-		playedWord.append(new Tile('U'));
-		playedWord.append(new Tile('T'));
-		playedWord.append(new Tile('E'));
-		assertTrue(playedWord.matches("COMPUTE"));
+		this.playedWord.append(new Tile('C'));
+		this.playedWord.append(new Tile('O'));
+		this.playedWord.append(new Tile('M'));
+		this.playedWord.append(new Tile('P'));
+		this.playedWord.append(new Tile('U'));
+		this.playedWord.append(new Tile('T'));
+		this.playedWord.append(new Tile('E'));
+		assertTrue(this.playedWord.matches("COMPUTE"));
 	}
 
 	@Test
 	void hasTilesForASingleLetterWord() {
-		playedWord.append(new Tile('A'));
-		assertTrue(playedWord.matches("A"));
+		this.playedWord.append(new Tile('A'));
+		assertTrue(this.playedWord.matches("A"));
 	}
 
 	@Test
 	void cannotMatchWordWhenTilesAreScrambled() {
-		playedWord.append(new Tile('O'));
-		playedWord.append(new Tile('C'));
-		playedWord.append(new Tile('P'));
-		playedWord.append(new Tile('M'));
-		playedWord.append(new Tile('E'));
-		playedWord.append(new Tile('U'));
-		playedWord.append(new Tile('T'));
-		assertFalse(playedWord.matches("COMPUTE"));
+		this.playedWord.append(new Tile('O'));
+		this.playedWord.append(new Tile('C'));
+		this.playedWord.append(new Tile('P'));
+		this.playedWord.append(new Tile('M'));
+		this.playedWord.append(new Tile('E'));
+		this.playedWord.append(new Tile('U'));
+		this.playedWord.append(new Tile('T'));
+		assertFalse(this.playedWord.matches("COMPUTE"));
 	}
 
 	@Test
 	void cannotMatchWordIfInsufficientTiles() {
-		playedWord.append(new Tile('C'));
-		playedWord.append(new Tile('O'));
-		playedWord.append(new Tile('M'));
-		playedWord.append(new Tile('P'));
-		playedWord.append(new Tile('U'));
-		playedWord.append(new Tile('T'));
-		assertFalse(playedWord.matches("COMPUTE"));
+		this.playedWord.append(new Tile('C'));
+		this.playedWord.append(new Tile('O'));
+		this.playedWord.append(new Tile('M'));
+		this.playedWord.append(new Tile('P'));
+		this.playedWord.append(new Tile('U'));
+		this.playedWord.append(new Tile('T'));
+		assertFalse(this.playedWord.matches("COMPUTE"));
 	}
 
 	@Test
 	void canMatchWordWithDuplicateLetters() {
-		playedWord.append(new Tile('B'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		assertTrue(playedWord.matches("BANANA"));
+		this.playedWord.append(new Tile('B'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		assertTrue(this.playedWord.matches("BANANA"));
 	}
 
 	@Test
 	void nonEmptyWordShouldNotMatchEmptyText() {
-		playedWord.append(new Tile('B'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		assertFalse(playedWord.matches(""));
+		this.playedWord.append(new Tile('B'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		assertFalse(this.playedWord.matches(""));
 	}
 
 	@Test
 	void emptyWordShouldNotMatchEmptyText() {
-		assertFalse(playedWord.matches(""));
+		assertFalse(this.playedWord.matches(""));
 	}
 
 	@Test
 	void shouldNotAllowNull() {
-		assertThrows(IllegalArgumentException.class, () -> playedWord.matches(null));
+		assertThrows(IllegalArgumentException.class, () -> this.playedWord.matches(null));
 	}
 
 }

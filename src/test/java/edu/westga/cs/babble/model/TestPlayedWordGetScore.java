@@ -1,6 +1,6 @@
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class TestPlayedWordGetScore {
 
 	@BeforeEach
 	void setUp() {
-		playedWord = new PlayedWord();
+		this.playedWord = new PlayedWord();
 	}
 
 	/**
@@ -23,37 +23,37 @@ class TestPlayedWordGetScore {
 	 */
 	@Test
 	void emptyWordShouldHaveScoreOfZero() {
-		assertEquals(0, playedWord.tiles().size());
-		assertEquals(0, playedWord.getScore());
+		assertEquals(0, this.playedWord.tiles().size());
+		assertEquals(0, this.playedWord.getScore());
 	}
 	
 	@Test
 	void scoreAOneTileWord() {
-		playedWord.append(new Tile('A'));
-		assertEquals(1, playedWord.getScore());
+		this.playedWord.append(new Tile('A'));
+		assertEquals(1, this.playedWord.getScore());
 	}
 	
 	@Test
 	void scoreAWordWithMultipleDifferingTiles() {
-		playedWord.append(new Tile('C'));
-		playedWord.append(new Tile('O'));
-		playedWord.append(new Tile('M'));
-		playedWord.append(new Tile('P'));
-		playedWord.append(new Tile('U'));
-		playedWord.append(new Tile('T'));
-		playedWord.append(new Tile('E'));
-		assertEquals(13, playedWord.getScore());
+		this.playedWord.append(new Tile('C'));
+		this.playedWord.append(new Tile('O'));
+		this.playedWord.append(new Tile('M'));
+		this.playedWord.append(new Tile('P'));
+		this.playedWord.append(new Tile('U'));
+		this.playedWord.append(new Tile('T'));
+		this.playedWord.append(new Tile('E'));
+		assertEquals(13, this.playedWord.getScore());
 	}
 	
 	@Test
 	void scoreAWordContainingDuplicateTiles() {
-		playedWord.append(new Tile('B'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		playedWord.append(new Tile('N'));
-		playedWord.append(new Tile('A'));
-		assertEquals(8, playedWord.getScore());
+		this.playedWord.append(new Tile('B'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		this.playedWord.append(new Tile('N'));
+		this.playedWord.append(new Tile('A'));
+		assertEquals(8, this.playedWord.getScore());
 	}
 
 }

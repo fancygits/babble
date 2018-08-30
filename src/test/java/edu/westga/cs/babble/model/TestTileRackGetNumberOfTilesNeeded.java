@@ -1,6 +1,6 @@
 package edu.westga.cs.babble.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class TestTileRackGetNumberOfTilesNeeded {
 
 	@BeforeEach
 	void setUp() {
-		tileRack = new TileRack();
+		this.tileRack = new TileRack();
 	}
 
 	/**
@@ -23,29 +23,29 @@ class TestTileRackGetNumberOfTilesNeeded {
 	 */
 	@Test
 	void emptyTileRackShouldNeedMaxSizeNumberOfTiles() {
-		assertEquals(TileRack.MAX_SIZE, tileRack.getNumberOfTilesNeeded());
+		assertEquals(TileRack.MAX_SIZE, this.tileRack.getNumberOfTilesNeeded());
 	}
 	
 	@Test
 	void tileRackWithOneTileShouldNeedMaxSizeMinusOneTiles() {
-		tileRack.append(new Tile('A'));
-		assertEquals(TileRack.MAX_SIZE - 1, tileRack.getNumberOfTilesNeeded());
+		this.tileRack.append(new Tile('A'));
+		assertEquals(TileRack.MAX_SIZE - 1, this.tileRack.getNumberOfTilesNeeded());
 	}
 	
 	@Test
 	void tileRackWithSeveralTilesShouldNeedSomeTiles() {
-		tileRack.append(new Tile('A'));
-		tileRack.append(new Tile('A'));
-		tileRack.append(new Tile('A'));
-		tileRack.append(new Tile('A'));
-		assertEquals(TileRack.MAX_SIZE - 4, tileRack.getNumberOfTilesNeeded());
+		this.tileRack.append(new Tile('A'));
+		this.tileRack.append(new Tile('A'));
+		this.tileRack.append(new Tile('A'));
+		this.tileRack.append(new Tile('A'));
+		assertEquals(TileRack.MAX_SIZE - 4, this.tileRack.getNumberOfTilesNeeded());
 	}
 	
 	@Test
 	void fullRackNeedsZeroTiles() {
 		for (int count = 0; count < TileRack.MAX_SIZE; count++) {
-			tileRack.append(new Tile('A'));
+			this.tileRack.append(new Tile('A'));
 		}
-		assertEquals(0, tileRack.getNumberOfTilesNeeded());
+		assertEquals(0, this.tileRack.getNumberOfTilesNeeded());
 	}
 }

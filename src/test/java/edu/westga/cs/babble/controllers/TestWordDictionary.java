@@ -1,39 +1,44 @@
 package edu.westga.cs.babble.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.babble.controllers.WordDictionary;
-
+/**
+ * Tests the WordDictionary class
+ * @author lewisb
+ * @version 2018.08.29
+ *
+ */
 public class TestWordDictionary {
 
-	WordDictionary dictionary;
+	private WordDictionary dictionary;
 	
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() throws Exception {
 		this.dictionary = new WordDictionary();
 	}
 
-	
 	@Test
-	public void stringExpandShouldBeValid() {
+	void stringExpandShouldBeValid() {
 		assertTrue(this.dictionary.isValidWord("Expand"));
 	}
 	
 	@Test
-	public void stringBugblatShouldNotBeValid() {
+	void stringBugblatShouldNotBeValid() {
 		assertFalse(this.dictionary.isValidWord("Bugblat"));
 	}
 	
 	@Test
-	public void emptyStringShouldNotBeValid() {
+	void emptyStringShouldNotBeValid() {
 		assertFalse(this.dictionary.isValidWord(""));
 	}
 
 	@Test
-	public void shouldNotAcceptNull() {
+	void shouldNotAcceptNull() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			this.dictionary.isValidWord(null);
 		});

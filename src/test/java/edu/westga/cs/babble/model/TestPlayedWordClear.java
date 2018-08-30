@@ -16,7 +16,7 @@ class TestPlayedWordClear {
 
 	@BeforeEach
 	void setUp() {
-		playedWord = new PlayedWord();
+		this.playedWord = new PlayedWord();
 	}
 
 	/**
@@ -24,33 +24,33 @@ class TestPlayedWordClear {
 	 */
 	@Test
 	void shouldClearEmptyWord() {
-		assertEquals(0, playedWord.tiles().size());
-		playedWord.clear();
-		assertEquals(0, playedWord.tiles().size());
-		assertTrue(playedWord.tiles().isEmpty());
+		assertEquals(0, this.playedWord.tiles().size());
+		this.playedWord.clear();
+		assertEquals(0, this.playedWord.tiles().size());
+		assertTrue(this.playedWord.tiles().isEmpty());
 	}
 
 	@Test
 	void shouldClearWordWithOneTile() {
-		assertEquals(0, playedWord.tiles().size());
-		playedWord.append(new Tile('A'));
-		assertEquals(1, playedWord.tiles().size());
-		playedWord.clear();
-		assertTrue(playedWord.tiles().isEmpty());
+		assertEquals(0, this.playedWord.tiles().size());
+		this.playedWord.append(new Tile('A'));
+		assertEquals(1, this.playedWord.tiles().size());
+		this.playedWord.clear();
+		assertTrue(this.playedWord.tiles().isEmpty());
 	}
 
 	@Test
 	void shouldClearWordWithManyTiles() {
-		assertEquals(0, playedWord.tiles().size());
-		playedWord.append(new Tile('L'));
-		playedWord.append(new Tile('E'));
-		playedWord.append(new Tile('W'));
-		playedWord.append(new Tile('I'));
-		playedWord.append(new Tile('S'));
-		playedWord.append(new Tile('B'));
-		assertEquals(6, playedWord.tiles().size());
-		playedWord.clear();
-		assertTrue(playedWord.tiles().isEmpty());
+		assertEquals(0, this.playedWord.tiles().size());
+		this.playedWord.append(new Tile('L'));
+		this.playedWord.append(new Tile('E'));
+		this.playedWord.append(new Tile('W'));
+		this.playedWord.append(new Tile('I'));
+		this.playedWord.append(new Tile('S'));
+		this.playedWord.append(new Tile('B'));
+		assertEquals(6, this.playedWord.tiles().size());
+		this.playedWord.clear();
+		assertTrue(this.playedWord.tiles().isEmpty());
 	}
 
 }

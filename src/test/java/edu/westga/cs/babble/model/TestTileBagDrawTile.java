@@ -19,7 +19,7 @@ class TestTileBagDrawTile {
 	
 	@BeforeEach
 	public void setUp() {
-		bag = new TileBag();
+		this.bag = new TileBag();
 	}
 
 	/**
@@ -29,40 +29,42 @@ class TestTileBagDrawTile {
 	void canDrawAllTiles() {
 		for (int count = 0; count < 98; count++) {
 			try {
-				bag.drawTile();
+				this.bag.drawTile();
 			} catch (EmptyTileBagException etbe) {
 				fail("Tile Bag is empty!");
 			}
 		}
-		assertTrue(bag.isEmpty());
+		assertTrue(this.bag.isEmpty());
 	}
 
 	@Test
 	void canNotDrawTooManyTiles() {
 		for (int count = 0; count < 98; count++) {
 			try {
-				bag.drawTile();
+				this.bag.drawTile();
 			} catch (EmptyTileBagException etbe) {
 				fail("Tile Bag is empty!");
 			}
 		}
-		assertTrue(bag.isEmpty());
-		assertThrows(EmptyTileBagException.class, () -> bag.drawTile());
+		assertTrue(this.bag.isEmpty());
+		assertThrows(EmptyTileBagException.class, () -> this.bag.drawTile());
 	}
 
+	/**
+	 * Create an ArrayList of all Scrabble tiles then
+	 * Draw a tile and remove that letter from the standardDistribution
+	 */
 	@Test
 	void hasProperTileDistribution() {
-		// Create an ArrayList of all Scrabble tiles
 		String scrabbleLetters = "AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ";
 		ArrayList<Character> standardDistribution = new ArrayList<Character>();
-		for (char c: scrabbleLetters.toCharArray()) {
-			standardDistribution.add(c);
+		for (char ch: scrabbleLetters.toCharArray()) {
+			standardDistribution.add(ch);
 		}
 		
-		for (int i = 0; i < 98; i++) {
+		for (int count = 0; count < 98; count++) {
 			try {
-				// Draw a tile and remove that letter from the standardDistribution
-				char letter = bag.drawTile().getLetter();
+				char letter = this.bag.drawTile().getLetter();
 				standardDistribution.remove(standardDistribution.indexOf(letter));
 			} catch (EmptyTileBagException etbe) {
 				fail("Tile Bag is empty!");
@@ -70,7 +72,7 @@ class TestTileBagDrawTile {
 				fail("That tile isn't part of the standard distribution!");
 			}
 		}
-		assertTrue(bag.isEmpty());
+		assertTrue(this.bag.isEmpty());
 	}
 
 }
